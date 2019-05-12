@@ -1,0 +1,18 @@
+###WPF中的布局元素
+####Grid
+1、网格。可以自定义行和列并通过行列的数拱、行高和列宽来调整控件的布局。近似于HTML中的Table。
+2、Grid类具有ColumnDefinitions和Row Definitions两个属性，它们分别是ColumnDefinition和
+RowDefinition的集合，表示Grid定义了多少列、多少行。
+3、Grid的行高和列宽可以设置三类值：
+    绝对值：double数值加单位后缀  如：10px
+    比例值：double数值加*        如：2*
+    自动值：字符串 Auto  
+
+####StackPanel
+栈式面板。可将包含的元素在竖直或水平方向上排成一条直线，当移除一个元素后，后面的元素会自动向前移动以填充空缺。
+####Canvas
+画布。内部元素可以使用以像素为单位的绝对坐标进行定位，类似于Windows Form编程的布局方式。
+####DockPanel
+泊靠式面板。内部元素可以选择泊靠方向，类似于在Windows Form编程中设置控件的Dock属性。
+####WrapPanel
+自动折行面板。内部元素在排满 一 行后能够自动折行，类似于HTML中的流式布局 。

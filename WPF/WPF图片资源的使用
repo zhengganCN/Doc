@@ -1,0 +1,7 @@
+###WPF图片资源
+####添加与使用
+    1、在Properties下的Resources.resx添加图片资源
+        双击该Resources.resx，在左上角选择图片，选择添加现有文件，选择图片 如  abc.jpg
+        这样，图片就变成二进制资源了
+    2、在C#代码中使用
+        Image image=Resources.abc

@@ -1,0 +1,41 @@
+###WPF中的DataBinding
+####XAML中的控价之间的数据绑定
+1、XAML代码
+    <TextBox x:Name="textBox1" Text="{Binding Path=Value,ElementName=slider1}"></TextBox>
+    <Slider x:Name="slider1" Width="100" Maximum="100" Minimum="0" Value="10"></Slider>
+    说明：移动滑块（Slider是滑块），滑块值会显示在TextBox上。
+
+####在代码中建立与控件之间的绑定
+    1、XAML代码
+        <ListBox Name="dataListBox">
+            
+        </ListBox>
+        <TextBox x:Name="text1"></TextBox>
+    2、c#代码
+        创建学生类
+        public class Student
+        {
+            private string name;
+            private int id;
+            private int age;
+
+            public string Name { get => name; set => name = value; }
+            public int Id { get => id; set => id = value; }
+            public int Age { get => age; set => age = value; }
+        }
+        在主窗体的c#代码中的构造函数写
+        List<Student> list = new List<Student>()
+        {
+            new Student(){Id=11,Name="timo",Age=20},
+            new Student(){Id=21,Name="momo",Age=20},
+            new Student(){Id=31,Name="lako",Age=20}
+        };
+        dataListBox.ItemsSource = list;
+        dataListBox.DisplayMemberPath = "Name";
+
+        Binding binding = new Binding("SelectedIndex")
+        {
+            Source = dataListBox
+        };
+        text1.SetBinding(TextBox.TextProperty,binding);
+

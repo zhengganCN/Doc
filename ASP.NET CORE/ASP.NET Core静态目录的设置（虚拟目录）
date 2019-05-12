@@ -1,0 +1,10 @@
+##ASP.NET CORE中配置静态文件
+####在Statup.cs文件中的Configure中添加下列语句，必须在app.UseMvc()之前添加
+    app.UseStaticFiles(new StaticFileOptions()
+    {
+        FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(),"../AiXueXiImage/")),//表示在当前目录的上一级目录下的AiXueXiImage文件夹可以被访问
+        RequestPath = new PathString("/MyImages")//设置虚拟目录
+    });
+    //AiXueXiImage文件夹下有一张图片 hi.png
+    //访问方式：http://主机地址:12585/MyImages/hi.ong

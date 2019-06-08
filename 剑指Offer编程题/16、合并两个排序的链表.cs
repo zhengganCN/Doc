@@ -1,0 +1,92 @@
+/*
+输入两个单调递增的链表，输出两个链表合成后的链表，
+当然我们需要合成后的链表满足单调不减规则。
+*/
+public class Solution
+{
+    public ListNode Merge(ListNode pHead1, ListNode pHead2)
+    {
+        if (pHead1 == null)
+        {
+            if (pHead2 == null)
+            {
+                return null;
+            }
+            else
+            {
+                return pHead2;
+            }
+        }
+        else
+        {
+            if (pHead2 == null)
+            {
+                return pHead1;
+            }
+            else
+            {
+                List<ListNode> nodes = MergeToList(pHead1,pHead2);
+                //对ListNode对象数组进行排序
+                nodes.Sort(new ListNodeCompare());
+                for (int i = 0; i < nodes.Count-1; i++)
+                {
+                    nodes[i].next = nodes[i + 1];
+                }
+                //把最后一个节点的next属性设为null
+                nodes[nodes.Count - 1].next = null;
+                return nodes[0];
+            }
+        }
+    }
+    //把链表合并成List
+    private List<ListNode>MergeToList(ListNode pHead1, ListNode pHead2)
+    {
+        List<ListNode> nodes = new List<ListNode>();
+        nodes.Add(pHead1);
+        while (pHead1.next!=null)
+        {
+            nodes.Add(pHead1.next);
+            pHead1 = pHead1.next;
+        }
+        nodes.Add(pHead2);
+        while (pHead2.next != null)
+        {
+            nodes.Add(pHead2.next);
+            pHead2 = pHead2.next;
+        }
+        return nodes;
+    }
+    //重写排序
+    public class ListNodeCompare : IComparer<ListNode>
+    {
+        public int Compare(ListNode x, ListNode y)
+        {
+            if (x==null)
+            {
+                if (y==null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y==null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    if (x.val==y.val)
+                    {
+                        return 0;
+                    }
+                    return x.val >= y.val ? 1 : -1;
+                }
+            }
+        }
+    }
+}

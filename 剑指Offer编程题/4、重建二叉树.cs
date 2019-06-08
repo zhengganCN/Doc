@@ -1,0 +1,53 @@
+class Program
+{
+    public static int[][] data = new int[3][];
+    static void Main(string[] args)
+    {
+        var s= Solution.reConstructBinaryTree(new int[] { 1, 2, 4, 7, 3, 5, 6, 8 }, new int[] { 4, 7, 2, 1, 5, 3, 8, 6 });          
+    }
+
+}
+public static class Solution
+{
+    public static TreeNode reConstructBinaryTree(int[] pre, int[] tin)
+    {
+        return CreateTreeNode(pre, 0, pre.Length - 1, tin, 0, tin.Length - 1);
+    }
+    public static TreeNode CreateTreeNode(int[] pre, int preStart, int preEnd, int[] tin, int tinStart, int tinEnd)
+    {
+        TreeNode tree = new TreeNode(pre[preStart]);
+        if (preStart == preEnd && tinStart == tinEnd)
+        {
+            return tree;
+        }
+        int root = 0;
+        for (root = tinStart; root < tinEnd; root++)
+        {
+            if (pre[preStart] == tin[root])
+            {
+                break;
+            }
+        }
+        int leifLength = root - tinStart;
+        int rightLength = tinEnd - root;
+        if (leifLength > 0)
+        {
+            tree.left = CreateTreeNode(pre, preStart + 1, preStart + leifLength, tin, tinStart, root - 1);
+        }
+        if (rightLength > 0)
+        {
+            tree.right = CreateTreeNode(pre, preStart + 1 + leifLength, preEnd, tin, root + 1, tinEnd);
+        }
+        return tree;
+    }
+}
+public class TreeNode
+{
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int x)
+    {
+        val = x;
+    }
+}

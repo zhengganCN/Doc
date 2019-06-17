@@ -1,0 +1,85 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.WriteLine("请输入金额：");
+                var moneyString= Console.ReadLine();
+                if (!int.TryParse(moneyString, out int money))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("请选择优惠策略：1代表打八折，2代表满300减100");
+                    var strategy= Console.ReadLine();
+                    switch (strategy)
+                    {
+                        case "1":
+                            var dicount= new CashContext(new Discount(money)).RealPay();
+                            Console.WriteLine(dicount);
+                            break;
+                        case "2":
+                            var fullReduction=new CashContext(new FullReduction(money)).RealPay();
+                            Console.WriteLine(fullReduction);
+                            break;
+                        default:
+                            Console.WriteLine("请选择正确的优惠策略");
+                            break;
+                    }
+                }
+
+            }
+        }
+    }
+    class CashContext
+    {
+        private readonly Cash cash;
+        public CashContext(Cash cash)
+        {
+            this.cash = cash;
+        }
+        public double RealPay()
+        {
+            return cash.Pay();
+        }
+    }
+    abstract class Cash
+    {
+        public abstract double Pay();
+    }
+
+    class Discount : Cash
+    {
+        private readonly double money;
+        public Discount(double money)
+        {
+            this.money = money;
+        }
+        public override double Pay()
+        {
+            return money * 0.8;
+        }
+    }
+    class FullReduction : Cash
+    {
+        private double money;
+        public FullReduction(double money)
+        {
+            this.money = money;
+        }
+        public override double Pay()
+        {
+            if (money>=300)
+            {
+                money -= 100;
+            }
+            return money;
+        }
+    }
+}

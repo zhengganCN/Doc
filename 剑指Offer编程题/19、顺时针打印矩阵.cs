@@ -1,0 +1,153 @@
+/*
+题目描述
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，
+例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+ 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.
+*/
+class PointMatrix
+{
+    private int x;
+    private int y;
+    public PointMatrix(int x,int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    public int X
+    {
+        get
+        {
+            return x;
+        }
+
+        set
+        {
+            x = value;
+        }
+    }
+
+    public int Y
+    {
+        get
+        {
+            return y;
+        }
+
+        set
+        {
+            y = value;
+        }
+    }
+}
+class Solution
+{
+    public List<int> printMatrix(int[][] matrix)
+    {
+        List<int> intList = new List<int>();
+        
+        if (matrix.Length == 0)
+        {
+            return null;
+        }
+        PointMatrix lt = new PointMatrix(0, 0);//左上
+        PointMatrix rt = new PointMatrix(matrix[0].Length - 1, 0);//右上
+        PointMatrix rb = new PointMatrix(matrix[0].Length - 1, matrix.Length - 1);//右下
+        PointMatrix lb = new PointMatrix(0, matrix.Length - 1);//左下
+        int dir= 0;//标记当前while循环应该遍历矩阵的上下左右的哪一列或行
+        int intCount = 0;//统计已经便利的矩阵中数字的个数。
+        //顺时针遍历矩阵，每个while循环都会遍历矩阵的一行或者一列，并修改矩阵的四个顶点的位置。
+        while (true)
+        {
+            int temp = dir % 4;
+            switch (temp)
+            {
+                case 0:
+                    for (int i = lt.Y; i <= rt.X; i++)
+                    {
+                        intList.Add(matrix[lt.Y][i]);
+                        intCount++;
+                    }
+                    lt.Y++;
+                    rt.Y++;
+                    dir++;
+                    break;
+                case 1:
+                    for (int i = rt.Y; i <= rb.Y; i++)
+                    {
+                        intList.Add(matrix[i][rt.X]);
+                        intCount++;
+                    }
+                    rt.X--;
+                    rb.X--;
+                    dir++;
+                    break;
+                case 2:
+                    for (int i = rb.X; i>=lb.X; i--)
+                    {
+                        intList.Add(matrix[lb.Y][i]);
+                        intCount++;
+                    }
+                    rb.Y--;
+                    lb.Y--;
+                    dir++;
+                    break;
+                case 3:
+                    for (int i = lb.Y; i >= lt.Y; i--)
+                    {
+                        intList.Add(matrix[i][lb.X]);
+                        intCount++;
+                    }
+                    lb.X++;
+                    lt.X++;
+                    dir++;
+                    break;
+            }
+            //判断矩阵是否遍历结束
+            if (intCount==matrix.Length*matrix[0].Length)
+            {
+                return intList;
+            }
+        }
+    }
+}
+
+/*
+其他解法
+可以模拟魔方逆时针旋转的方法，一直做取出第一行的操作
+例如 
+1 2 3
+4 5 6
+7 8 9
+输出并删除第一行后，再进行一次逆时针旋转，就变成：
+6 9
+5 8
+4 7
+继续重复上述操作即可。
+*/
+/*
+Python代码 
+# -*- coding:utf-8 -*-
+class Solution:
+    # matrix类型为二维列表，需要返回列表
+    def printMatrix(self, matrix):
+        # write code here
+        result = []
+        while(matrix):
+            result+=matrix.pop(0)
+            if not matrix or not matrix[0]:
+                break
+            matrix = self.turn(matrix)
+        return result
+    def turn(self,matrix):
+        num_r = len(matrix)
+        num_c = len(matrix[0])
+        newmat = []
+        for i in range(num_c):
+            newmat2 = []
+            for j in range(num_r):
+                newmat2.append(matrix[j][i])
+            newmat.append(newmat2)
+        newmat.reverse()
+        return newmat
+*/

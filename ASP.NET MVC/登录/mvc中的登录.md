@@ -1,6 +1,6 @@
 # mvc中的登录
 
-##  在Web.config添加配置
+## 在Web.config添加配置
 
     <system.web>
         <authentication mode="Forms">

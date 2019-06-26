@@ -1,5 +1,0 @@
-###ASP.NET Core EF框架之Code First数据库迁移
-####1、迁移命令
-    Add-Migration -Name xxx -Context XXXDbContext -OutPut xxx
-####2、更新命令
-    Update-Database -Context XXXDbContext

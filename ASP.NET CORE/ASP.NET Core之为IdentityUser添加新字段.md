@@ -1,4 +1,7 @@
-1、创建用户实体，继承IdentityUser，添加新增属性
+# ASP.NET Core之为IdentityUser添加新字段
+
+## 1、创建用户实体，继承IdentityUser，添加新增属性
+
     public class Account:IdentityUser
     {
         /// <summary>
@@ -14,7 +17,9 @@
         /// </summary>
         public string QQ { get; set; }
     }
-2、创建DbContext上下文类，泛型参数为继承了IdentityUser的自定义实体
+
+## 2、创建DbContext上下文类，泛型参数为继承了IdentityUser的自定义实体
+
     public class MyDbContext:IdentityDbContext<Account>
     {
         public MyDbContext()

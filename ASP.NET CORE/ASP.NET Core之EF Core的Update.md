@@ -1,8 +1,14 @@
-####先查询在修改
-####直接创建实例，修改数据
+# ASP.NET Core之EF Core的Update
+
+## 先查询在修改
+
+## 直接创建实例，修改数据
+
     Attach
     Entry State
-####修改部分数据
+
+## 修改部分数据
+
     1、修改基本类型的数据
         Attach
         Property

@@ -1,5 +1,7 @@
-###ASP.NET Core之Ajax
-1、前端JQuery代码
+# ASP.NET Core之Ajax
+
+## 1、前端JQuery代码
+
 $.get({
     url: "/Course/CourseChapter",
     data: { "courseId": courseId },
@@ -14,7 +16,9 @@ $.post({
         alter(data);
     }
 });
-2、ASP.NET Core代码
+
+## 2、ASP.NET Core代码
+
 //Ajax调用,返回课程章节信息
 [HttpGet]
 public JsonResult CourseChapter()

@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="vue.min.js"></script>
 </head>
 <body>
-    <div id="app" v-if="isShow">
-        {{title}}
-    </div>
+    <!-- 使用NodeJS调用app.js，启动服务器 -->
+    <!-- 在浏览器中打开本页面 -->
     <script>
-        var app=new Vue({
-            el:"#app",
-            data:{
-                title:"HELLO WORLD!"
-            }
-        });
+        function showed(data){
+            alert(data.name+'|'+data.age+'|'+data.school);
+        }
     </script>
+    <script src="http://127.0.0.1:3000/getscript?callback=showed"></script>
 </body>
 </html>

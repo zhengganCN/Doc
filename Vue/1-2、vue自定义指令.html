@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 调用自定义指令 -->
+        <input type="text" v-focus>
+    </div>
+    <script>
+        //全局指令
+        Vue.directive("focus", {
+            //第一个参数永远是el
+            bind:function(el){//绑定到元素上时执行一次（只执行一次）
+                
+            },
+            inserted:function(el){//当被绑定的元素插入到DOM中时执行
+                el.focus();
+            }
+            //以及一些其他的钩子函数
+        })
+        var app=new Vue({
+            el:"#app",
+            data:{
+                title:"HELLO WORLD!",      
+            },
+            //定义自定义指令
+            directives:{
+                'focus':{
+                        inserted:function(el){//当被绑定的元素插入到DOM中时执行
+                        el.focus();
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

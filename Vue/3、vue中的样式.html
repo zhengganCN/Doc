@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <style>
+        .color{
+            color: red;
+        }
+        .font-size{
+            font-size: 30px;
+        }
+        .font-weight{
+            font-weight: bolder;
+        }
+        .font-italic{
+            font: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- 使用v-Bind绑定样式 -->
+            <p :class="['font-size','color']">我是一串字符！！</p>
+            <p :class="['font-size',{'color':hasColor}]">我是一串字符！！</p>   
+            <p :class="{color:!hasColor}">我是一串字符！！</p>   
+            <p :class="pstyle">我是一串字符！！</p>    
+        </div>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data:{
+                hasColor:false,
+                pstyle:['font-size','color']
+            }
+        });
+    </script>
+</body>
+</html>

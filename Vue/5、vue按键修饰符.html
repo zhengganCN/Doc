@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-for="(item, index) in list" :key="index">{{item}}</p>
+        <!-- 按键修饰符enter，监听键盘的enter按键 -->
+        vue自带修饰符enter
+        <input type="text" @keyup.enter="add()" v-model="value">
+        <!-- 使用自定义的按键修饰符 -->
+        自定义的按键修饰符F2
+        <input type="text" @keyup.f2="add()" v-model="value">
+    </div>
+    
+    <script>
+        // 自定义全局按键修饰符
+        Vue.config.keyCodes = {
+            f2:113  //f2是自定义名称，113是按键的码值
+        }
+        var stop=new Vue({
+            el:"#app",
+            data:{
+                value:'',
+                list:['1','2']
+            },
+            methods: {
+                add(){
+                    this.list.push(this.value);
+                }
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <!-- 使用stop事件修饰符阻止冒泡 -->
+    <div id="app" @click="divClick" style="background-color: black; width: 100px;height:100px;">
+        <button @click="btnClick">无stop修饰按钮</button>
+        <button @click.stop="btnClick">有stop修饰按钮</button>
+    </div>
+    <!-- 使用prevent事件修饰符阻止默认的元素行为 -->
+    <div id="pre">
+        <a href="http://www.baidu.com" @click.prevent="aClick">百度一下</a>
+    </div>
+    <!-- 使用capture事件修饰符捕获事件触发机制 -->
+    <div id="capture" @click.capture="divClick" style="color: white;background-color: black; width: 100px;height:100px;">
+        <button @click="btnClick">按钮</button>
+        有capture修饰div
+    </div>
+    <!-- 使用self事件修饰符实现只有当前元素被点击时，才会触发事件 -->
+    <div id="self" @click.self="divClick" style="color: white; background-color: black; width: 100px;height:100px;">
+        <button @click="btnClick">按钮</button>
+        有self修饰div
+    </div>
+    <!-- 使用once事件修饰符实现事件只执行一次 -->
+    <div id="once" @click="divClick" style="background-color: black; width: 100px;height:100px;">
+        <button @click.once="btnClick">有once修饰按钮</button>
+    </div>
+    <script>
+        var stop=new Vue({
+            el:"#app",
+            data:{
+            },
+            methods: {
+                divClick(){
+                    alert("divClick");
+                },
+                btnClick(){
+                    alert("btnClick");
+                }
+            },
+        });
+        var prevent=new Vue({
+            el:"#pre",
+            data:{
+            },
+            methods: {
+                aClick(){
+                    alert("aClick");
+                }
+            },
+        });
+        var capture=new Vue({
+            el:"#capture",
+            data:{
+            },
+            methods: {
+                divClick(){
+                    alert("divClick");
+                },
+                btnClick(){
+                    alert("btnClick");
+                }
+            },
+        });
+        var self=new Vue({
+            el:"#self",
+            data:{
+            },
+            methods: {
+                divClick(){
+                    alert("divClick");
+                },
+                btnClick(){
+                    alert("btnClick");
+                }
+            },
+        });
+        var once=new Vue({
+            el:"#once",
+            data:{
+            },
+            methods: {
+                divClick(){
+                    alert("divClick");
+                },
+                btnClick(){
+                    alert("btnClick");
+                }
+            },
+        });
+    </script>
+</body>
+</html>

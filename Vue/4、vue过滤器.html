@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- 全局过滤器和局部过滤器同名，则先调用局部过滤器 -->
+            <p>{{ title| checktitle('国')}}</p>
+        </div>
+    </div>
+    <script>
+        // 全局过滤器
+        Vue.filter('checktitle', function(data,arg){
+            if(data.length>5){
+                data= data.substring(0,5);
+            }
+            return data+arg;
+        });
+        var app=new Vue({
+            el:"#app",
+            data:{
+                title:"HELLO WORLD!"
+            },
+            methods: {
+                hello:function(){
+                    alert("hello!!");
+                }
+            },
+            // 局部过滤器
+            filters:{
+                checktitle:function(data,arg){
+                    return data+arg;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

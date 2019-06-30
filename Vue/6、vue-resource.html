@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 调用自定义指令 -->
+        <input type="text" v-focus>
+    </div>
+    <script>
+        function show(){
+            alert('hello');
+        }
+        // global Vue object
+        Vue.http.get('/someUrl', [config]).then(successCallback, errorCallback);
+        Vue.http.post('/someUrl', [body], [config]).then(successCallback, errorCallback);
+        // in a Vue instance
+        var app=new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods: {
+                sendGet:function(){
+                    this.$http.get('/someUrl', [config]).then(successCallback, errorCallback);
+                },
+                sendPost:function(){
+                    this.$http.post('/someUrl', [body], [config]).then(successCallback, errorCallback);
+                }
+            },
+        })
+    </script>
+</body>
+</html>

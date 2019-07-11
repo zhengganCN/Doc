@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue组件</title>
+    <script src="vue.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 组件的意义：拆分Vue实例的代码量，功能模块化和组件化 -->
+    <div id="app">
+        <my-pon></my-pon>
+        <my-pon2></my-pon2>
+        <my-pon3></my-pon3>
+
+        <limitcom></limitcom>
+        <limitcom2></limitcom2>
+        <limitcom3></limitcom3>
+    </div>
+    <template id="comp1">
+        <h2>这是一个模板组件</h2>
+    </template>
+    <template id="comp2">
+        <h2>这是局部组件模板</h2>
+    </template>
+    <template id="comp3">
+        <h2>{{msg}}</h2>
+    </template>
+    <script>
+        // 创建全局组件
+        var com = Vue.extend({
+            template: '<h3>这是一个组件</h3>'
+        });
+        Vue.component('MyPon', com);
+        //或者
+        Vue.component('MyPon2', {
+            template: '<h3>这是一个组件</h3>'
+        });
+        //或者
+        Vue.component('MyPon3', {
+            template: '#comp1'
+        })
+        // 创建局部组件
+        var app = new Vue({
+            el: '#app',
+            components: {
+                limitcom: {
+                    template: '<h2>这是局部组件<h2>'
+                },
+                limitcom2: {
+                    template: '#comp2'
+                },
+                limitcom3: {
+                    template: '#comp3',
+                    data() {
+                        return {
+                            msg:'这是组件中的数据'
+                        }
+                    },
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

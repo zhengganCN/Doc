@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue子组件调用父组件中的方法</title>
+    <script src="vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-list></my-list>
+    </div>
+    <template id="list">
+        <button>1111</button>
+        <div>
+            <h2 v-for="(item, index) in names" :key="index">{{item}}</h2>
+        </div>
+    </template>
+    <script>
+        Vue.component('MyList',{
+            template:'#list',
+            data() {
+                return {
+                    names:['1','2']
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                hello: 'hello world'
+            },
+            methods: {
+                test: function () {
+                    alert("hello");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue动画</title>
+    <script src="vue.min.js"></script>
+    <style>
+        li {
+            border: 1px dotted black;
+            margin-top: 10px;
+        }
+
+        li:hover {
+            cursor: pointer;
+            background-color: deepskyblue;
+            transition: all 0.8s ease;
+        }
+
+        /* vue的动画类 */
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateY(80px);
+        }
+
+        /* vue的动画类 */
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.6s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <label>姓名：</label>
+            <input type="text" v-model="name">
+            <label>年龄：</label>
+            <input type="text" v-model="age">
+            <input type="button" value="添加" v-on:click="add">
+        </div>
+        <!-- 使用v-for循环渲染出来的元素不能使用transition来包裹，必须使用transition-group -->
+        <!-- vue的transition-group元素添加appear属性，实现入场动画效果 -->
+        <!-- vue的transition-group元素添加tag属性可以指定transition-group渲染成指定的元素，如果不指定tag，则默渲染成span元素 -->
+        <transition-group appear tag='ul'>
+            <li v-for="(item, index) in list" :key="index" v-on:click="del(index)">
+                {{item.name}}-------{{item.age}}
+            </li>
+        </transition-group>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                age: 16,
+                list: [{
+                        name: '刘备',
+                        age: 16
+                    },
+                    {
+                        name: '关羽',
+                        age: 15
+                    },
+                    {
+                        name: '张飞',
+                        age: 14
+                    }
+                ]
+            },
+            methods: {
+                add: function () {
+                    this.list.push({
+                        name: this.name,
+                        age: this.age
+                    });
+                    this.name = '';
+                    this.age = 18;
+                },
+                del: function (i) {
+                    this.list.splice(i, 1);
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

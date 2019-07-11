@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用vue实例的render方法渲染组件</title>
+    <script src="vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        var login = {
+            template: '<h1>登录组件</h1>'
+        }
+        var app = new Vue({
+            el: '#app',
+            render(h) { //使用render方法渲染组件会替换el绑定的元素
+                return h(login);
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue子组件调用父组件中的方法</title>
+    <script src="vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='test'>点我</button>
+        <p ref="ask">{{hello}}</p>
+        <my-com ref="my"></my-com>
+    </div>
+    <template id="mycom">
+        <p>{{name}}</p>
+    </template>
+    <script>
+        Vue.component('MyCom', {
+            template: '#mycom',
+            data() {
+                return {
+                    name: 'hello'
+                }
+            },
+            methods: {
+                show: function () {
+                    alert('world');
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                hello: 'hello world'
+            },
+            methods: {
+                test: function () {
+                    alert(this.$refs.ask.innerText);
+                    alert(this.$refs.my.name);
+                    this.$refs.my.show();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

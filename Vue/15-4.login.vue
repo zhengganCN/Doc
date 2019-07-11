@@ -1,0 +1,9 @@
+<template>
+  <div>
+    <h1>这是使用.vue文件生成的模板</h1>
+  </div>
+</template>
+<script>
+</script>
+<style>
+</style>

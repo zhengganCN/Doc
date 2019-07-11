@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue父组件向子组件传值</title>
+    <script src="vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <login v-bind:mydefine="hello"></login>
+    </div>
+    <script>
+        // 创建局部组件
+        var app = new Vue({
+            el: '#app',
+            data: {
+                hello:'hello world'
+            },
+            components: {
+                login: {
+                    template: '<h2>这是登录组件----{{mydefine}}</2>{{name}}',
+                    // data是可读可写的，props是只读的
+                    data() {
+                        return {
+                            name:'小红'
+                        }
+                    },
+                    props:['mydefine']
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,7 @@
-##ASP.NET CORE中配置静态文件
-####在Statup.cs文件中的Configure中添加下列语句，必须在app.UseMvc()之前添加
+# ASP.NET CORE中配置静态文件
+
+## 在Statup.cs文件中的Configure中添加下列语句，必须在app.UseMvc()之前添加
+
     app.UseStaticFiles(new StaticFileOptions()
     {
         FileProvider = new PhysicalFileProvider(

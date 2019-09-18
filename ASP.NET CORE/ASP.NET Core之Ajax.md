@@ -2,6 +2,7 @@
 
 ## 1、前端JQuery代码
 
+```javascript
 $.get({
     url: "/Course/CourseChapter",
     data: { "courseId": courseId },
@@ -16,9 +17,11 @@ $.post({
         alter(data);
     }
 });
+```
 
 ## 2、ASP.NET Core代码
 
+```C#
 //Ajax调用,返回课程章节信息
 [HttpGet]
 public JsonResult CourseChapter()
@@ -60,3 +63,4 @@ public JsonResult Chapter()
     }
     return Json(models);
 }
+```

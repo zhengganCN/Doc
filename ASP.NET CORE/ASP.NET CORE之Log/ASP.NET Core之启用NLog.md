@@ -69,6 +69,7 @@ public class Program
     <!--All logs, including from Microsoft-->
     <logger name="*" minlevel="Trace" writeTo="allfile" />
     <!--Skip non-critical Microsoft logs and so log only own logs-->
+    <!-- 丢弃Microsoft的日志，不写入ownFile-web -->
     <logger name="Microsoft.*" maxlevel="Info" final="true" />
     <!-- BlackHole without writeTo -->
     <logger name="*" minlevel="Trace" writeTo="ownFile-web" />

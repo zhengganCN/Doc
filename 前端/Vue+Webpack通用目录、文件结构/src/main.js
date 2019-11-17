@@ -8,6 +8,11 @@ Vue.use(VueRoute);
 
 axios.defaults.baseURL = 'http://101.132.176.83:12355/api';
 
+const isDebug_mode = process.env.NODE_ENV !== 'production';
+Vue.config.debug = isDebug_mode;
+Vue.config.devtools = isDebug_mode;
+Vue.config.productionTip = isDebug_mode;
+
 Vue.filter("time",function(value){
     if(value==null){
         return "";

@@ -1,48 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Auth.Common
+﻿/// <summary>
+/// hash算法
+/// </summary>
+public class MD5
 {
-    /// <summary>
-    /// MD5加密
-    /// </summary>
-    public class MD5Encrypt
+    private readonly ILogger<MD5> _logger;
+    public MD5(ILogger<MD5> logger)
     {
-        private readonly string _original;
-        public MD5Encrypt(string original)
-        {
-            _original = original;
-        }
+        _logger = logger;
+    }
 
-        public string Encrypt()
+    public string Encrypt(string text)
+    {
+        if (!string.IsNullOrEmpty(text))
         {
-            if (!String.IsNullOrEmpty(_original))
+            try
             {
-                try
+                using var md5 = new MD5CryptoServiceProvider();
+                var textBytes = Encoding.Default.GetBytes(text);
+                var hashBytes = md5.ComputeHash(textBytes);
+                StringBuilder hashString = new StringBuilder();
+                foreach (var item in hashBytes)
                 {
-                    using (var md5 = new MD5CryptoServiceProvider())
-                    {
-                        var originalBytes = Encoding.Default.GetBytes(_original);
-                        var hashBytes = md5.ComputeHash(originalBytes);
-                        StringBuilder hashString = new StringBuilder();
-                        foreach (var item in hashBytes)
-                        {
-                            hashString.Append(item.ToString("X"));
-                        }
-                        return hashString.ToString();
-                    }
+                    hashString.Append(item.ToString("X"));
                 }
-                catch (Exception ex)
-                {
-
-                }
+                return hashString.ToString();
             }
-            return null;
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex.ToString());
+                return null;
+            }
         }
-        
+        return "";
     }
 }

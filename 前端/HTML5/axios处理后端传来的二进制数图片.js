@@ -10,7 +10,7 @@ axios
         let aLink = document.createElement("a");
         let evt = document.createEvent("HTMLEvents");
         evt.initEvent("click", true, true);
-        aLink.download = "qrcode";//下载文件名
+        aLink.download = "qrcode"; //下载文件名
         aLink.href = url;
         aLink.click();
         URL.revokeObjectURL(blob);

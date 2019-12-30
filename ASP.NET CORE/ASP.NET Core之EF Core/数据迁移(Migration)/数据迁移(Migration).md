@@ -1,4 +1,4 @@
-# ASP.NET Core之迁移(Migration)
+# 迁移(Migration)
 
 ## Code First数据库迁移
 

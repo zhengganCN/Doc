@@ -1,5 +1,0 @@
-# ASP.NET Core之EF Core修改实体状态
-
-## 修改实体状态为“不跟踪”
-
-    context.Entry(实体).State = EntityState.Detached;

@@ -5,7 +5,7 @@
 ## 基本命令
 
 new
-restore  
+restore
     dotnet restore恢复项目的依赖项和工具。
 build
 publish

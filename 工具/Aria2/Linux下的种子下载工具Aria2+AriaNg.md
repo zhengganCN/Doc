@@ -13,7 +13,7 @@
 
 ## 配置Aria2
 
-    在/root目录创建aria2文件夹，在文件夹内创建aria2.session和aria2.log文件
+    在/root目录创建.aria2文件夹，在文件夹内创建aria2.session和aria2.log文件
 
     mkdir .aria2
     cd .aria2

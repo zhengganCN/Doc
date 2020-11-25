@@ -1,4 +1,4 @@
-# ASP.NET Core之Ajax
+# Ajax
 
 ## 1、前端JQuery代码
 

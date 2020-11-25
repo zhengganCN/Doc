@@ -1,4 +1,4 @@
-# ASP.NET Core之为IdentityUser添加新字段
+# 为IdentityUser添加新字段
 
 ## 1、创建用户实体，继承IdentityUser，添加新增属性
 

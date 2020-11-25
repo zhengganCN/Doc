@@ -1,4 +1,4 @@
-# ASP.NET Core之SQL To Linq
+# SQL To Linq
 
 ## _context为数据库上下文
 

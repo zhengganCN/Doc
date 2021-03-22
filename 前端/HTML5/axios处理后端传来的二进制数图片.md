@@ -1,5 +1,7 @@
-axios
-    .post("/QRCoder/CreateQRCode", {}, {
+# axios处理后端传来的二进制数图片
+
+```js
+axios.post("/QRCoder/CreateQRCode", {}, {
         responseType: "arraybuffer" //返回数据类型为二进制数据
     })
     .then(result => {
@@ -16,3 +18,4 @@ axios
         URL.revokeObjectURL(blob);
     })
     .catch(err => {});
+```
